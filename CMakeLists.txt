@@ -14,7 +14,7 @@ message(STATUS "We are on a ${CMAKE_SYSTEM_NAME} system")
 message(STATUS "The host processor is ${CMAKE_HOST_SYSTEM_PROCESSOR}")
 message(STATUS "The compiler is ${CMAKE_CXX_COMPILER_ID}")
 
-find_package(Boost 1.67 REQUIRED COMPONENTS coroutine)
+find_package(Boost 1.66 REQUIRED COMPONENTS coroutine)
 message(STATUS "Boost include dir: ${Boost_INCLUDE_DIR}")
 message(STATUS "Boost libs: ${Boost_LIBRARIES}")
 
@@ -30,4 +30,4 @@ set(SOURCES
 
 add_executable (coro ${SOURCES})
 target_include_directories(coro PUBLIC ${Boost_INCLUDE_DIR} ${OPENSSL_INCLUDE_DIR})
-target_link_libraries(coro PUBLIC ${Boost_LIBRARIES} ${OPENSSL_LIBRARIES} drivers)
+target_link_libraries(coro PUBLIC pthread ${Boost_LIBRARIES} ${OPENSSL_LIBRARIES} drivers)
